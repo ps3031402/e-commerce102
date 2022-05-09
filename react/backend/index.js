@@ -9,6 +9,8 @@ const { getAllProducts } = require('./utils/productUtil.js');
 
 // allow cors 
 app.use(allowOrigin);
+//for heroku
+app.use(express.static('public/build'))
 
 // JSON is a data format that is used to exchange data between a server and a client.
 app.use(express.json());
@@ -48,12 +50,13 @@ app.get("/data", async (req, res) => {
     });
 });
 /****************end routes************/
+const port = process.env.PORT || 8080 
 
 
 
 /* Listening to 8080  */
-app.listen(8080, () => {
-    console.log("Server is running on port 8080");
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 })
 
 
